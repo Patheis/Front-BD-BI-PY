@@ -1,0 +1,249 @@
+/* Estilo geral */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #121212;
+    color: white;
+    background-image: url('img/foto.jpg');
+    background-size: cover; /* Faz a imagem cobrir toda a área disponível */
+    background-position: center; /* Centraliza a imagem */
+    background-attachment: fixed; /* A imagem de fundo fica fixa ao rolar a página */
+    background-repeat: no-repeat; /* Impede a repetição da imagem */
+}
+
+/* Cabeçalho fixo */
+header {
+    position: sticky;
+    top: 0;
+    background-color: #1c1c1c;
+    padding: 20px 0;
+    color: white;
+    z-index: 100;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    max-height: 100px;
+    margin: 0 auto;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-left: 20px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+nav ul li a:hover {
+    color: #ff4747;
+}
+
+/* Seções */
+.section {
+    padding: 40px 20px;
+    margin-top: 60px;
+    background-color: #1c1c1c;
+}
+
+h2 {
+    font-size: 2em;
+    color: #ff4747;
+}
+
+/* Seção de Upload com imagem de fundo */
+.upload-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: rgba(8, 8, 8, 0.8);  
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    background-image: url('img/foto.jpg'); 
+    background-size: cover;          
+    background-position: center;      
+}
+
+
+
+.upload-container h2 {
+    color: #ff4747; /* Ajuste da cor do título */
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.upload-container button {
+    padding: 12px 25px;
+    background-color: #ff4747;
+    border: none;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.upload-container button:hover {
+    background-color: #ff2d2d;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    color: white;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+
+th {
+    background-color: #2b2b2b;
+}
+
+tr:nth-child(even) {
+    background-color: #333;
+}
+
+tr:hover {
+    background-color: #444;
+}
+
+/* Rodapé */
+footer {
+    background-color: #1c1c1c;
+    padding: 40px 20px;
+    color: #f2f2f2;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-column {
+    flex: 1;
+    margin: 10px;
+    max-width: 300px;
+}
+
+.footer-column h3 {
+    font-size: 1.5em;
+    color: #ff4747;
+}
+
+.footer-column p {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+.footer-column a {
+    color: #ff4747;
+    text-decoration: none;
+}
+
+.footer-column a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-column {
+        max-width: none;
+    }
+}
+
+/* Estilos para os filtros de pesquisa e data */
+.filters {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.filters label {
+    font-size: 1.1em;
+    color: #ff4747;
+}
+
+.filters input {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #2b2b2b;
+    color: white;
+}
+
+.filters input[type="text"] {
+    width: 1000px; /* Aumenta o tamanho da caixa de pesquisa */
+}
+
+.filters input[type="date"] {
+    width: 180px;
+}
+
+.filters button {
+    padding: 10px 20px;
+    background-color: #ff4747;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+.filters button:hover {
+    background-color: #ff2d2d;
+}
+
+.filters input:focus, .filters button:focus {
+    outline: none;
+    border-color: #ff4747;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.social-links img {
+    width: 24px;  /* Ajuste o tamanho conforme necessário */
+    height: 24px;
+    margin-right: 10px;
+}
+
+.social-links a {
+    color: #ff4747;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}

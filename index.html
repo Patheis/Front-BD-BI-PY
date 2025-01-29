@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importador de XML - Power BI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Cabeçalho Fixo -->
+<header>
+    <div class="header-container">
+        <h1>Importador de XML para Power BI</h1>
+        <nav>
+            <ul>
+                <li><a href="#upload">Fazer Upload</a></li>
+                <li><a href="#consulta">Consulta ao Banco</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Seção de Upload -->
+<div id="upload" class="section">
+    <center><h2>Faça o Upload do Arquivo XML</h2>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="xmlFile" accept=".xml" required>
+        <button type="submit">Enviar XML</button>
+    </form></center>
+</div>
+
+<!-- Seção de Consulta ao Banco de Dados -->
+<div id="consulta" class="section">
+    <h2>Consulta aos Dados</h2>
+
+    <!-- Filtro de pesquisa e data -->
+    <div class="filters">
+        <input type="text" id="searchName" placeholder="Pesquisar nome do fornecedor" onkeyup="filterData()" style="width: 450px;">
+        <input type="date" id="searchDate" onchange="filterData()">
+        <button type="button" onclick="filterData()">Pesquisar</button> <!-- Botão de pesquisa -->
+        
+    </div>
+
+    <!-- Tabela de Dados -->
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Valor</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Produto A</td>
+                <td>R$ 200,00</td>
+                <td>2025-01-29</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Produto B</td>
+                <td>R$ 150,00</td>
+                <td>2025-01-28</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Produto C</td>
+                <td>R$ 120,00</td>
+                <td>2025-01-27</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+    <!-- Seção Sobre -->
+    <div id="sobre" class="section">
+        <h2>Sobre</h2>
+        <p>Informações sobre o serviço de importação de XML e Power BI.</p>
+    </div>
+
+    <!-- Seção Contato -->
+    <div id="contato" class="section">
+        <h2>Contato</h2>
+        <p>Entre em contato conosco pelo email: joao.patheisds@gmail.com</p>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Joao Vitor</h3>
+                <p>(19) 3656-4566</p>
+                <p><a href="mailto:joao.patheisds@gmail.com">joao.patheisds@gmail.com</a></p>
+                <p>Rua ***, 842 - Centro</p>
+                <p>Mococa - SP, 01121-000</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Menu</h3>
+                <p><a href="#">Início</a></p>
+                <p><a href="#">Soluções</a></p>
+                <p><a href="#">Visão</a></p>
+                <p><a href="#">Blog</a></p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Minhas redes</h3>
+            
+                <div class="social-links">
+                    
+                        <img src="ico/link.png" alt="LinkedIn" class="social-icon"> <a href="https://www.linkedin.com/in/jo%C3%A3o-vitor-patheis-dos-santos-922a3620b/">LinkedIn </a>
+                    
+                </div> 
+                 <br>
+                <div class="social-links">
+                    
+                        <img src="ico/git.png" alt="GitHub" class="social-icon"><a href="https://github.com/Patheis"> GitHub </a>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </footer>
+
+    <script src="\script.js">
+
+    </script>
+</body>
+</html>

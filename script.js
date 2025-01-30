@@ -24,3 +24,28 @@ function filterData() {
 }
 
 
+// Função para alternar entre selecionar arquivos ou pastas
+function toggleFileInput() {
+    var toggle = document.getElementById('toggleUpload');
+    var fileInput = document.getElementById('fileInput');
+    var label = document.getElementById('toggleLabel');
+    
+    if (toggle.checked) {
+        // Se o toggle estiver ativado (selecionando pasta)
+        fileInput.setAttribute('webkitdirectory', ''); // Ativa o modo de selecionar uma pasta
+        fileInput.removeAttribute('multiple'); // Desabilita múltiplos arquivos
+        label.textContent = "Selecione uma pasta completa"; // Altera o texto do rótulo
+    } else {
+        // Se o toggle estiver desativado (selecionando um arquivo único)
+        fileInput.removeAttribute('webkitdirectory'); // Desativa o modo de pasta
+        fileInput.removeAttribute('multiple', ''); // Garante que apenas um arquivo será aceito
+        label.textContent = "Selecione um arquivo XML"; // Altera o texto do rótulo
+    }
+}
+
+
+
+
+
+
+

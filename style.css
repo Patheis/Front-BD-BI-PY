@@ -247,3 +247,80 @@ footer {
 .social-links a:hover {
     text-decoration: underline;
 }
+
+/* Estilo para o Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 50px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #4CAF50;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  /* Título do Toggle */
+  #toggleLabel {
+    margin-left: 20px;
+    font-size: 1.2em;
+    color: #fff;
+    transition: color 0.3s ease, font-weight 0.3s ease;
+  }
+  
+  /* Estilos para a legenda ao ativar o toggle */
+  input:checked ~ #toggleLabel {
+    color: #4CAF50; /* Cor verde para quando estiver ativo */
+    font-weight: bold; /* Torna o texto mais forte */
+  }
+  
+  /* Estilização dos botões */
+.submit-button {
+    padding: 12px 25px;
+    background-color: #ff4747;
+    border: none;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.submit-button:hover {
+    background-color: #ff2d2d;
+}
+
+  

@@ -24,14 +24,32 @@
     </div>
 </header>
 
+
 <!-- Seção de Upload -->
 <div id="upload" class="section">
-    <center><h2>Faça o Upload do Arquivo XML</h2>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="xmlFile" accept=".xml" required>
-        <button type="submit">Enviar XML</button>
-    </form></center>
+    <center>
+        <h2>Faça o Upload do Arquivo XML</h2>
+
+        <!-- Toggle Switch para selecionar entre pasta ou arquivos -->
+        <label class="switch">
+            <input type="checkbox" id="toggleUpload" onchange="toggleFileInput()">
+            <span class="slider round"></span>
+        </label>
+        
+        <span id="toggleLabel">Selecionar uma pasta completa</span>
+        <br> <br>
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <!-- Input de arquivo (padrão como selecionar arquivos) -->
+            <input type="file" id="fileInput" name="xmlFile" accept=".xml" required>
+            <br><br>
+            <!-- Botão de Submit com a classe apply -->
+            <button type="submit" class="submit-button">Enviar XML</button>
+        </form>
+    </center>
 </div>
+
+
 
 <!-- Seção de Consulta ao Banco de Dados -->
 <div id="consulta" class="section">
@@ -130,7 +148,7 @@
         </div>
     </footer>
 
-    <script src="\script.js">
+    <script src="script.js">
 
     </script>
 </body>

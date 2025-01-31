@@ -1,0 +1,27 @@
+CREATE DATABASE nf;
+
+USE nf;
+
+CREATE TABLE cliente (
+    idcliente INT PRIMARY KEY AUTO_INCREMENT,
+    nome_cliente VARCHAR(200) NOT NULL,
+    cpf BIGINT
+);
+
+CREATE TABLE nota_fiscal (
+    idnota_fiscal INT PRIMARY KEY AUTO_INCREMENT,
+    num_nota INT NOT NULL,
+    nome_empresa VARCHAR(200) NOT NULL,
+    cnpj_empresa BIGINT,
+    cliente_idcliente INT, 
+    vl_icms FLOAT NOT NULL,
+    vl_pis FLOAT,
+    vl_confis FLOAT,
+    vl_total_impostos FLOAT,
+    FOREIGN KEY (cliente_idcliente) REFERENCES cliente(idcliente)
+);
+
+
+-- Alterando a tabela nota_fiscal para garantir unicidade no número da nota
+ALTER TABLE nota_fiscal
+ADD CONSTRAINT unique_num_nota UNIQUE (num_nota);

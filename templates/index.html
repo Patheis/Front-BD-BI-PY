@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Importador de XML - Power BI</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <!-- Referência ao CSS utilizando url_for -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
@@ -24,10 +25,9 @@
     </div>
 </header>
 
-
 <!-- Seção de Upload -->
 <div id="upload" class="section">
-    <center>
+    <div style="text-align: center;">
         <h2>Faça o Upload do Arquivo XML</h2>
 
         <!-- Toggle Switch para selecionar entre pasta ou arquivos -->
@@ -37,20 +37,18 @@
         </label>
         
         <span id="toggleLabel">Selecionar uma pasta completa</span>
-        <br> <br>
+        <br><br>
 
-        <form action="uploads/" method="POST" enctype="multipart/form-data">
-            <!-- Input de arquivo (padrão como selecionar arquivos) -->
+        <!-- Formulário de Upload com action ajustado para a rota /upload -->
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <!-- Input de arquivo (padrão: selecionar arquivos) -->
             <input type="file" id="fileInput" name="xmlFile" accept=".xml" required>
             <br><br>
-            <!-- Botão de Submit com a classe apply -->
+            <!-- Botão de Submit -->
             <button type="submit" class="submit-button">Enviar XML</button>
-        </form> 
-        
-    </center>
+        </form>
+    </div>
 </div>
-
-
 
 <!-- Seção de Consulta ao Banco de Dados -->
 <div id="consulta" class="section">
@@ -60,8 +58,7 @@
     <div class="filters">
         <input type="text" id="searchName" placeholder="Pesquisar nome do fornecedor" onkeyup="filterData()" style="width: 450px;">
         <input type="date" id="searchDate" onchange="filterData()">
-        <button type="button" onclick="filterData()">Pesquisar</button> <!-- Botão de pesquisa -->
-        
+        <button type="button" onclick="filterData()">Pesquisar</button>
     </div>
 
     <!-- Tabela de Dados -->
@@ -97,70 +94,64 @@
     </table>
 </div>
 
+<!-- Seção Sobre -->
+<div id="sobre" class="section">
+    <h2>Sobre</h2>
+    <p>Informações sobre o serviço de importação de XML e Power BI.</p>
+</div>
 
+<!-- Seção Contato -->
+<div id="contato" class="section">
+    <h2>Contato</h2>
+    <p>Entre em contato conosco pelo email: joao.patheisds@gmail.com</p>
+</div>
 
-    <!-- Seção Sobre -->
-    <div id="sobre" class="section">
-        <h2>Sobre</h2>
-        <p>Informações sobre o serviço de importação de XML e Power BI.</p>
-    </div>
-
-    <!-- Seção Contato -->
-    <div id="contato" class="section">
-        <h2>Contato</h2>
-        <p>Entre em contato conosco pelo email: joao.patheisds@gmail.com</p>
-    </div>
-
-    <!-- Rodapé -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>Joao Vitor</h3>
-                <p>(19) 3656-4566</p>
-                <p><a href="mailto:joao.patheisds@gmail.com">joao.patheisds@gmail.com</a></p>
-                <p>Rua ***, 842 - Centro</p>
-                <p>Mococa - SP, 01121-000</p>
-            </div>
-
-            <div class="footer-column">
-                <h3>Menu</h3>
-                <p><a href="#">Início</a></p>
-                <p><a href="#">Soluções</a></p>
-                <p><a href="#">Visão</a></p>
-                <p><a href="#">Blog</a></p>
-            </div>
-
-            <div class="footer-column">
-                <h3>Minhas redes</h3>
-            
-                <div class="social-links">
-                    
-                        <img src="ico/link.png" alt="LinkedIn" class="social-icon"> <a href="https://www.linkedin.com/in/jo%C3%A3o-vitor-patheis-dos-santos-922a3620b/">LinkedIn </a>
-                    
-                </div> 
-                 <br>
-                <div class="social-links">
-                    
-                        <img src="ico/git.png" alt="GitHub" class="social-icon"><a href="https://github.com/Patheis"> GitHub </a>
-                    
-                </div>
-            </div>
-            
+<!-- Rodapé -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>Joao Vitor</h3>
+            <p>(19) 3656-4566</p>
+            <p><a href="mailto:joao.patheisds@gmail.com">joao.patheisds@gmail.com</a></p>
+            <p>Rua ***, 842 - Centro</p>
+            <p>Mococa - SP, 01121-000</p>
         </div>
-    </footer>
-    
-    <script src="script.js">
 
-    </script>
+        <div class="footer-column">
+            <h3>Menu</h3>
+            <p><a href="#">Início</a></p>
+            <p><a href="#">Soluções</a></p>
+            <p><a href="#">Visão</a></p>
+            <p><a href="#">Blog</a></p>
+        </div>
+
+        <div class="footer-column">
+            <h3>Minhas redes</h3>
+            <div class="social-links">
+                <img src="ico/link.png" alt="LinkedIn" class="social-icon"> 
+                <a href="https://www.linkedin.com/in/jo%C3%A3o-vitor-patheis-dos-santos-922a3620b/">LinkedIn</a>
+            </div>
+            <br>
+            <div class="social-links">
+                <img src="ico/git.png" alt="GitHub" class="social-icon">
+                <a href="https://github.com/Patheis">GitHub</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bloco para exibição de mensagens flash -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flash-messages">
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<!-- Inclusão do arquivo JavaScript utilizando url_for -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
-
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        <ul>
-            {% for category, message in messages %}
-                <li class="{{ category }}">{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-{% endwith %}

@@ -1,0 +1,66 @@
+<nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">
+<NFe xmlns="http://www.portalfiscal.inf.br/nfe">
+<infNFe versao="4.00" Id="NFe183363">
+<ide>
+<cUF>52</cUF>
+<cNF>37433645</cNF>
+<natOp>6107 VENDA PRODUCAO ESTAO DESTINADA A NAO CONTRIBUINTE </natOp>
+<mod>55</mod>
+<serie>106</serie>
+<nNF>3919816</nNF>
+<dhEmi>2023-09-04T00:00:00-03:00</dhEmi>
+<tpNF>1</tpNF>
+<idDest>2</idDest>
+<cMunFG>5220108</cMunFG>
+<tpImp>2</tpImp>
+<tpEmis>1</tpEmis>
+<finNFe>1</finNFe>
+</ide>
+<emit>
+<CNPJ>78876950012340</CNPJ>
+<xNome>SAO LOURENCO LTDA</xNome>
+</emit>
+<dest>
+<CPF>234.567.890-12</CPF>
+<xNome>Cliente B</xNome>
+</dest>
+<det nItem="1">
+<prod>
+<cProd>PROD-16</cProd>
+<xProd>Produto 16</xProd>
+<NCM>61091000</NCM>
+<qCom>1.0000</qCom>
+<vUnCom>132.17</vUnCom>
+<vProd>132.17</vProd>
+</prod>
+</det>
+<total>
+<ICMSTot>
+<vBC>231.72</vBC>
+<vICMS>16.22</vICMS>
+<vICMSDeson>0.00</vICMSDeson>
+<vFCPUFDest>0.00</vFCPUFDest>
+<vICMSUFDest>0.00</vICMSUFDest>
+<vICMSUFRemet>0.00</vICMSUFRemet>
+<vFCP>0.00</vFCP>
+<vBCST>0.00</vBCST>
+<vST>0.00</vST>
+<vFCPST>0.00</vFCPST>
+<vFCPSTRet>0.00</vFCPSTRet>
+<vProd>231.72</vProd>
+<vFrete>0.00</vFrete>
+<vSeg>0.00</vSeg>
+<vDesc>0.00</vDesc>
+<vII>0.00</vII>
+<vIPI>0.00</vIPI>
+<vIPIDevol>0.00</vIPIDevol>
+<vPIS>3.48</vPIS>
+<vCOFINS>17.61</vCOFINS>
+<vOutro>0.00</vOutro>
+<vNF>269.03</vNF>
+<vTotTrib>34.76</vTotTrib>
+</ICMSTot>
+</total>
+</infNFe>
+</NFe>
+</nfeProc>

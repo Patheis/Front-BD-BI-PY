@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Importador de XML - Power BI</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Referência ao CSS utilizando url_for -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -30,7 +29,6 @@
     <div style="text-align: center;">
         <h2>Faça o Upload do Arquivo XML</h2>
 
-        <!-- Toggle Switch para selecionar entre pasta ou arquivos -->
         <label class="switch">
             <input type="checkbox" id="toggleUpload" onchange="toggleFileInput()">
             <span class="slider round"></span>
@@ -39,12 +37,20 @@
         <span id="toggleLabel">Selecionar uma pasta completa</span>
         <br><br>
 
-        <!-- Formulário de Upload com action ajustado para a rota /upload -->
+        <!-- Bloco para exibir mensagens flash -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div id="flash-messages">
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
         <form action="/upload" method="POST" enctype="multipart/form-data">
-            <!-- Input de arquivo (padrão: selecionar arquivos) -->
-            <input type="file" id="fileInput" name="xmlFile" accept=".xml" required>
+            <input type="file" id="fileInput" name="xmlFile" accept=".xml" multiple required>
             <br><br>
-            <!-- Botão de Submit -->
             <button type="submit" class="submit-button">Enviar XML</button>
         </form>
     </div>
@@ -56,43 +62,62 @@
 
     <!-- Filtro de pesquisa e data -->
     <div class="filters">
-        <input type="text" id="searchName" placeholder="Pesquisar nome do fornecedor" onkeyup="filterData()" style="width: 450px;">
+        <input type="text" id="searchName" placeholder="Pesquisar nome do cliente" onkeyup="filterData()" style="width: 450px;">
         <input type="date" id="searchDate" onchange="filterData()">
-        <button type="button" onclick="filterData()">Pesquisar</button>
+        <button type="button" id="searchButton">Pesquisar</button>
     </div>
 
-    <!-- Tabela de Dados -->
-    <table id="dataTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Valor</th>
-                <th>Data</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Produto A</td>
-                <td>R$ 200,00</td>
-                <td>2025-01-29</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Produto B</td>
-                <td>R$ 150,00</td>
-                <td>2025-01-28</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Produto C</td>
-                <td>R$ 120,00</td>
-                <td>2025-01-27</td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- Adicionando Scroll na Tabela -->
+    <div class="table-container">
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Cliente</th>
+                    <th>Valor Total</th>
+                    <th>Data da Nota</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for nota in dados %}
+                <tr>
+                    <td>{{ nota.idnota_fiscal }}</td>
+                    <td>{{ nota.nome_cliente }}</td>
+                    <td>R$ {{ "%.2f"|format(nota.vl_total_impostos) }}</td>
+                    <td>{{ nota.data }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
+
+
+<script>
+    function filterData() {
+        let name = document.getElementById('searchName').value;
+        let date = document.getElementById('searchDate').value;
+
+        fetch(`/api/consulta?name=${encodeURIComponent(name)}&date=${encodeURIComponent(date)}`)
+        .then(response => response.json())
+        .then(data => {
+            let tableBody = document.querySelector("#dataTable tbody");
+            tableBody.innerHTML = ""; 
+
+            data.forEach(item => {
+                let row = `<tr>
+                    <td>${item.idnota_fiscal}</td>
+                    <td>${item.nome_cliente}</td>
+                    <td>R$ ${parseFloat(item.vl_total_impostos).toFixed(2)}</td>
+                    <td>${new Date(item.data).toLocaleDateString('pt-BR')}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        })
+        .catch(error => console.error("Erro ao carregar dados:", error));
+    }
+</script>
+
 
 <!-- Seção Sobre -->
 <div id="sobre" class="section">
@@ -128,30 +153,24 @@
         <div class="footer-column">
             <h3>Minhas redes</h3>
             <div class="social-links">
-                <img src="ico/link.png" alt="LinkedIn" class="social-icon"> 
+                <img src="/static/ico/link.png" alt="LinkedIn" class="social-icon"> 
                 <a href="https://www.linkedin.com/in/jo%C3%A3o-vitor-patheis-dos-santos-922a3620b/">LinkedIn</a>
             </div>
             <br>
             <div class="social-links">
-                <img src="ico/git.png" alt="GitHub" class="social-icon">
+                <img src="/static/ico/git.png" alt="GitHub" class="social-icon">
                 <a href="https://github.com/Patheis">GitHub</a>
             </div>
         </div>
     </div>
 </footer>
 
-<!-- Bloco para exibição de mensagens flash -->
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    <ul class="flash-messages">
-      {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
+<!-- Inclusão do arquivo JavaScript -->
+<script src="{{ url_for('static', filename='script.js') }}">
 
-<!-- Inclusão do arquivo JavaScript utilizando url_for -->
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+</script>
+
+
+
 </body>
 </html>

@@ -103,6 +103,12 @@ h2 {
 }
 
 /* Tabela */
+.table-container {
+    max-height: 400px; /* Ajuste a altura conforme necessário */
+    overflow-y: auto;
+    border: 1px solid #444; /* Opcional, só para destacar a área da tabela */
+}
+
 table {
     width: 100%;
     margin-top: 20px;
@@ -323,4 +329,20 @@ footer {
     background-color: #ff2d2d;
 }
 
-  
+#flash-messages {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    margin: 10px;
+    border-radius: 5px;
+  }
+  .alert {
+    margin-bottom: 5px;
+  }
+  .alert-success {
+    color: #00ff00;
+  }
+  .alert-error {
+    color: #ff0000;
+  }
+    

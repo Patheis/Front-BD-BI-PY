@@ -141,4 +141,4 @@ def gerar_nfe_xml(num_nfes=10, output_dir="nfe_xmls"):
         print(f"Arquivo gerado: {file_name}")
 
 if __name__ == "__main__":
-    gerar_nfe_xml(50)  # Gera 50 NF-es fictícias
+    gerar_nfe_xml(500)  # Gera 50 NF-es fictícias
